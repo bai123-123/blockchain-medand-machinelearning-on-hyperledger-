@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="Xenon Boostrap Admin Panel" />
+	<meta name="author" content="" />
+
+	<title>E-Med - Add EHR Details</title>
+
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
+	<link rel="stylesheet" href="../static/css/fonts/linecons/css/linecons.css">
+	<link rel="stylesheet" href="../static/css/fonts/fontawesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../static/css/bootstrap.css">
+	<link rel="stylesheet" href="../static/css/xenon-core.css">
+	<link rel="stylesheet" href="../static/css/xenon-forms.css">
+	<link rel="stylesheet" href="../static/css/xenon-components.css">
+	<link rel="stylesheet" href="../static/css/xenon-skins.css">
+	<link rel="stylesheet" href="../static/css/custom.css">
+
+	<script src="../static/js/jquery-1.11.1.min.js"></script>
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+
+</head>
+<body class="page-body">
+
+	<div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+
+		<!-- Add "fixed" class to make the sidebar fixed always to the browser viewport. -->
+		<!-- Adding class "toggle-others" will keep only one menu item open at a time. -->
+		<!-- Adding class "collapsed" collapse sidebar root elements and show only icons. -->
+		<div class="sidebar-menu toggle-others fixed">
+
+			<div class="sidebar-menu-inner">
+
+				<header class="logo-env">
+
+					<!-- logo -->
+					<div class="logo">
+						<a href="#" class="logo-expanded">
+							<img src="../static/img/logo_new5.png" width="80" alt="" />
+						</a>
+
+						<a href="#" class="logo-collapsed">
+							<img src="../static/img/logo_new5.png" width="40" alt="" />
+						</a>
+					</div>
+
+					<!-- This will toggle the mobile menu and will be visible only on mobile devices -->
+					<div class="mobile-menu-toggle visible-xs">
+						<a href="#" data-toggle="user-info-menu">
+							<i class="fa-bell-o"></i>
+							<span class="badge badge-success">7</span>
+						</a>
+
+						<a href="#" data-toggle="mobile-menu">
+							<i class="fa-bars"></i>
+						</a>
+					</div>
+
+					<!-- This will open the popup with user profile settings, you can use for any purpose, just be creative -->
+					<div class="settings-icon">
+						<a href="#">
+							<i class="linecons-cog"></i>
+						</a>
+					</div>
+
+
+				</header>
+
+
+
+				<ul id="main-menu" class="main-menu">
+					<!-- add class "multiple-expanded" to allow multiple submenus to open -->
+					<!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+					<li>
+						<a href="/ehrList">
+							<i class="linecons-note"></i>
+							<span class="title" >Back to list</span>
+						</a>
+					</li>
+				</ul>
+
+			</div>
+
+		</div>
+
+		<div class="main-content">
+
+			<!-- User Info, Notifications and Menu Bar -->
+			<nav class="navbar user-info-navbar" role="navigation">
+
+				<!-- Left links for user info navbar -->
+				<ul class="user-info-menu left-links list-inline list-unstyled">
+
+					<li class="hidden-sm hidden-xs">
+						<a href="#" data-toggle="sidebar">
+							<i class="fa-bars"></i>
+						</a>
+					</li>
+
+
+
+				</ul>
+
+
+				<!-- Right links for user info navbar -->
+				<ul class="user-info-menu right-links list-inline list-unstyled">
+
+					<li class="dropdown user-profile">
+						<a href="#" data-toggle="dropdown">
+							<img src="../static/img/user-4.png" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
+							<span>
+								{{.name}}
+								<i class="fa-angle-down"></i>
+							</span>
+						</a>
+
+						<ul class="dropdown-menu user-profile-menu list-unstyled">
+							<li>
+								<a href="#settings">
+									<i class="fa-wrench"></i>
+									Settings
+								</a>
+							</li>
+							<li>
+								<a href="#profile">
+									<i class="fa-user"></i>
+									Profile
+								</a>
+							</li>
+							<li>
+								<a href="#help">
+									<i class="fa-info"></i>
+									Help
+								</a>
+							</li>
+							<li class="last">
+								<a href="lockscreen.html">
+									<i class="fa-lock"></i>
+									Logout
+								</a>
+							</li>
+						</ul>
+					</li>
+
+
+
+				</ul>
+
+			</nav>
+			<div class="page-title">
+
+				<div class="title-env">
+					<h1 class="title">New EHR</h1>
+					<!--  					<p class="description">Plain text boxes, select dropdowns and other basic form elements</p>					 -->
+
+				</div>
+
+					<div class="breadcrumb-env">
+
+								<ol class="breadcrumb bc-1">
+									<li>
+								      <i class="fa-home"></i><a href="/index"> Home</a>
+							    </li>
+
+								</ol>
+
+				</div>
+			</div>
+
+<!-- Basic Information-->
+			<form action="/addEhr" method="post">
+			<div class="row">
+				<div class="col-sm-12">
+
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Basic Information</h3>
+							<div class="panel-options">
+								<a href="#" data-toggle="panel">
+									<span class="collapse-icon">&ndash;</span>
+									<span class="expand-icon">+</span>
+								</a>
+								<a href="#" data-toggle="remove">
+									&times;
+								</a>
+							</div>
+						</div>
+						<div class="panel-body">
+
+							<div role="form" class="form-horizontal" name="basicInfo">
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-1">Name</label>
+
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="field-1" placeholder="" name="name">
+									</div>
+								</div>
+
+								<div class="form-group-separator"></div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Gender</label>
+
+									<div class="col-sm-10">
+										<select class="form-control" name="gender">
+											<option>Male</option>
+											<option>Female</option>
+											<option>Others</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="form-group-separator"></div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-1">Age</label>
+
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="field-1" placeholder="" name="age">
+									</div>
+								</div>
+
+								<div class="form-group-separator"></div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Birth Date</label>
+
+									<div class="col-sm-10">
+										<div class="input-group">
+											<input type="text" class="form-control datepicker" data-format="D, dd MM yyyy" name="birthDate">
+
+											<div class="input-group-addon">
+												<a href="#"><i class="linecons-calendar"></i></a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="form-group-separator"></div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-1">ID Card NO.</label>
+
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="field-1" placeholder="" name="idCardNo">
+									</div>
+								</div>
+
+								<div class="form-group-separator"></div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Marital State</label>
+
+									<div class="col-sm-10">
+										<select class="form-control" name="maritalState">
+											<option>Married</option>
+											<option>Not Married</option>
+											<option>Others</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="form-group-separator"></div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-1">Address</label>
+
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="field-1" placeholder="" name="address">
+									</div>
+								</div>
+
+								<div class="form-group-separator"></div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-1">Contact Number</label>
+
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="field-1" placeholder="" name="contactNum">
+									</div>
+								</div>
+
+								<div class="form-group-separator"></div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-1">Emergency Contact</label>
+
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="field-1" placeholder="" name="econtactNum">
+									</div>
+								</div>
+
+								<div class="form-group-separator"></div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-3">Email</label>
+
+									<div class="col-sm-10">
+										<input type="email" class="form-control" id="field-3" placeholder="" name="email">
+									</div>
+								</div>
+
+								<div class="form-group-separator"></div>
+							</div>
+
+
+
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+
+
+<!--medical history,diagnoses,allegries-->
+
+			<div class="row">
+				<div class="col-sm-12">
+
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Medical History, Diagnoses, Allergies</h3>
+							<div class="panel-options">
+								<a href="#" data-toggle="panel">
+									<span class="collapse-icon">&ndash;</span>
+									<span class="expand-icon">+</span>
+								</a>
+								<a href="#" data-toggle="remove">
+									&times;
+								</a>
+							</div>
+						</div>
+						<div class="panel-body">
+
+							<div role="form" class="form-horizontal">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Medical Partment</label>
+
+									<div class="col-sm-10">
+										<select class="form-control" name="MP">
+											<option>Radiological department</option>
+											<option>Orthopaedics</option>
+											<option>Dematology</option>
+											<option>Chirurgery</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group-separator"></div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-5">Patient's Condition Description</label>
+
+									<div class="col-sm-10">
+										<textarea class="form-control autogrow" cols="5" id="field-5" placeholder="" name="PCD"></textarea>
+									</div>
+								</div>
+
+								<div class="form-group-separator"></div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-5">Patient's Medical History</label>
+
+									<div class="col-sm-10">
+										<textarea class="form-control autogrow" cols="5" id="field-5" placeholder="" name="PMH"></textarea>
+									</div>
+								</div>
+
+								<div class="form-group-separator"></div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-5">Doctor's Diagnoses</label>
+
+									<div class="col-sm-10">
+										<textarea class="form-control autogrow" cols="5" id="field-5" placeholder="" name="DD"></textarea>
+									</div>
+								</div>
+
+								<div class="form-group-separator"></div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label">Medicine</label>
+									<div class="col-sm-10">
+										<select class="form-control" name="allergies">
+											<option>Vicodin</option>
+											<option>Symthroid</option>
+											<option>Amoxil</option>
+											<option>Aspirin </option>
+											<option>Ibuprofen</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group-separator"></div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-1">Quantity per amount</label>
+
+									<div class="col-sm-10" >
+										<input type="text" class="form-control" id="field-1" placeholder="" name="quantity">
+									</div>
+								</div>
+								<div class="form-group-separator"></div>
+
+								<div class="form-group">
+									<label class="col-sm-2 control-label" for="field-1">Amount</label>
+
+									<div class="col-sm-10" >
+										<input type="text" class="form-control" id="field-1" placeholder="" name="amount">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+
+			<!--POM details-->
+
+
+
+			<div class="form-group">
+				<input type="reset" value="Cancel" class="btn btn-white"/>
+				<input type="submit" value="Save" class="btn btn-primary"/>
+			</div>
+		</form>
+			<!-- Main Footer -->
+			<!-- Choose between footer styles: "footer-type-1" or "footer-type-2" -->
+			<!-- Add class "sticky" to  always stick the footer to the end of page (if page contents is small) -->
+			<!-- Or class "fixed" to  always fix the footer to the end of page -->
+			<footer class="main-footer sticky footer-type-1">
+
+				<div class="footer-inner">
+
+					<!-- Add your copyright text here -->
+					<!--
+<div class="footer-text">
+						&copy; 2014
+						<strong>Xenon</strong>
+						theme by <a href="http://laborator.co" target="_blank">Laborator</a>
+					</div>-->
+
+
+
+
+					<!-- Go to Top Link, just add rel="go-top" to any link to add this functionality -->
+					<div class="go-up">
+
+						<a href="#" rel="go-top">
+							<i class="fa-angle-up"></i>
+						</a>
+
+					</div>
+
+				</div>
+
+			</footer>
+		</div>
+
+
+
+
+	</div>
+
+
+
+
+
+
+	<!-- Bottom Scripts -->
+	<script src="../static/js/bootstrap.min.js"></script>
+	<script src="../static/js/TweenMax.min.js"></script>
+	<script src="../static/js/resizeable.js"></script>
+	<script src="../static/js/joinable.js"></script>
+	<script src="../static/js/xenon-api.js"></script>
+	<script src="../static/js/xenon-toggles.js"></script>
+
+	<script src="../static/js/datepicker/bootstrap-datepicker.js"></script>
+
+
+	<!-- JavaScripts initializations and stuff -->
+	<script src="../static/js/xenon-custom.js"></script>
+
+</body>
+</html>

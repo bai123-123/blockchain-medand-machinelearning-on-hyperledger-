@@ -1,0 +1,82 @@
+entityMatchers:
+  peer:
+
+
+
+    - pattern: peer0.org1.example.(\w+)
+      urlSubstitutionExp: grpc://localhost:7051
+      eventUrlSubstitutionExp: localhost:7053
+      sslTargetOverrideUrlSubstitutionExp: peer0.org1.example.com
+      mappedHost: peer0.org1.example.com
+
+    - pattern: peer0.org2.example.(\w+)
+      urlSubstitutionExp: grpc://localhost:8051
+      eventUrlSubstitutionExp: localhost:8053
+      sslTargetOverrideUrlSubstitutionExp: peer0.org1.example.com
+      mappedHost: peer0.org2.example.com
+
+    - pattern: peer0.org3.example.(\w+)
+      urlSubstitutionExp: grpc://localhost:9051
+      eventUrlSubstitutionExp: localhost:9053
+      sslTargetOverrideUrlSubstitutionExp: peer0.org3.example.com
+      mappedHost: peer0.org3.example.com
+
+
+
+    - pattern: (\w+).org1.example.(\w+):(\d+)
+      urlSubstitutionExp: localhost:${2}
+      sslTargetOverrideUrlSubstitutionExp: ${1}.org1.example.com
+      mappedHost: ${1}.org1.example.com
+
+    - pattern: (\w+).org2.example.(\w+):(\d+)
+      urlSubstitutionExp: localhost:${2}
+      sslTargetOverrideUrlSubstitutionExp: ${1}.org2.example.com
+      mappedHost: ${1}.org2.example.com
+
+    - pattern: (\w+).org3.example.(\w+):(\d+)
+      urlSubstitutionExp: localhost:${2}
+      sslTargetOverrideUrlSubstitutionExp: ${1}.org3.example.com
+      mappedHost: ${1}.org3.example.com
+
+    - pattern: (\w+):7051
+      urlSubstitutionExp: grpc://localhost:7051
+      sslTargetOverrideUrlSubstitutionExp: peer0.org1.example.com
+      mappedHost: peer0.org1.example.com
+
+    - pattern: (\w+):8051
+      urlSubstitutionExp: grpc://localhost:8051
+      sslTargetOverrideUrlSubstitutionExp: peer0.org2.example.com
+      mappedHost: peer0.org2.example.com
+
+    - pattern: (\w+):9051
+      urlSubstitutionExp: grpc://localhost:9051
+      sslTargetOverrideUrlSubstitutionExp: peer0.org3.example.com
+      mappedHost: peer0.org3.example.com
+
+
+
+
+  orderer:
+
+    - pattern: (\w+).example.(\w+)
+      urlSubstitutionExp: grpc://localhost:7050
+      sslTargetOverrideUrlSubstitutionExp: orderer.example.com
+      mappedHost: orderer.example.com
+
+    - pattern: (\w+).example.(\w+):(\d+)
+      urlSubstitutionExp: grpc://localhost:7050
+      sslTargetOverrideUrlSubstitutionExp: orderer.example.com
+      mappedHost: orderer.example.com
+
+  certificateAuthorities:
+    - pattern: (\w*)ca.org1.example.com(\w*)
+      urlSubstitutionExp: grpc://localhost:7054
+      mappedHost: ca.org1.example.com
+
+    - pattern: (\w*)ca.org2.example.com(\w*)
+      urlSubstitutionExp: grpc://localhost:7055
+      mappedHost: ca.org2.example.com
+
+    - pattern: (\w*)ca.org3.example.com(\w*)
+      urlSubstitutionExp: grpc://localhost:7056
+      mappedHost: ca.org3.example.com
